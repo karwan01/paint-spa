@@ -56,10 +56,10 @@ const Navbar: React.FC = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <OutlinedButton variant="surface" radius="full">
+            <OutlinedButton variant="surface" radius="full" height="48px">
               Contact us
             </OutlinedButton>
-            <PrimaryButton variant="primary" radius="full">
+            <PrimaryButton variant="primary" radius="full" height="48px">
               Join us
             </PrimaryButton>
           </div>
