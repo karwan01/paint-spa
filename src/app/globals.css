@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* THEME COLORS */
   --color-primary: #7d4283;
   --color-on-primary: #ffffff;
   --color-secondary: #646a69;
@@ -13,4 +14,8 @@
   --color-accent-variant: #7951b3;
   --color-warning: #f3722c;
   --color-overlay: #c75ed05e;
+
+  /* FONTS */
+  --font-primary: var(--font-poppins);
+  --font-display: var(--font-grotesk);
 }
