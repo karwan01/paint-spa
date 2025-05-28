@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
     { name: "About us", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Branches", href: "#branches" },
+    { name: "Jobs", href: "#jobs", badge: 12 },
   ];
 
   return (
@@ -40,9 +41,14 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-on-background hover:text-primary transition-colors duration-200 font-primary font-medium"
+                  className="relative text-on-background hover:text-primary transition-colors duration-200 font-primary font-medium flex items-center"
                 >
                   {link.name}
+                  {link.badge && (
+                    <span className="ml-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full min-w-[20px] h-5">
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>
@@ -98,10 +104,15 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-3 text-on-background hover:text-primary hover:bg-surface/50 rounded-md transition-all duration-200 font-primary font-medium"
+                className="flex items-center justify-between px-3 py-3 text-on-background hover:text-primary hover:bg-surface/50 rounded-md transition-all duration-200 font-primary font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.badge && (
+                  <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full min-w-[20px] h-5">
+                    {link.badge}
+                  </span>
+                )}
               </Link>
             ))}
             <div className="pt-4 px-3 space-y-3">
