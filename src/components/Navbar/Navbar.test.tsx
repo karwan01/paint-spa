@@ -3,42 +3,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Navbar from "./Navbar";
 
-jest.mock("@/components/Buttons/OutlinedButton", () => {
-  return function MockOutlinedButton({
-    children,
-    onClick,
-    ...props
-  }: {
-    children: React.ReactNode;
-    onClick?: () => void;
-    [key: string]: unknown;
-  }) {
-    return (
-      <button onClick={onClick} data-testid="outlined-button" {...props}>
-        {children}
-      </button>
-    );
-  };
-});
-
-jest.mock("@/components/Buttons/PrimaryButton", () => {
-  return function MockPrimaryButton({
-    children,
-    onClick,
-    ...props
-  }: {
-    children: React.ReactNode;
-    onClick?: () => void;
-    [key: string]: unknown;
-  }) {
-    return (
-      <button onClick={onClick} data-testid="primary-button" {...props}>
-        {children}
-      </button>
-    );
-  };
-});
-
 describe("Navbar Component", () => {
   it("renders logo with correct attributes", () => {
     render(<Navbar />);
@@ -46,7 +10,7 @@ describe("Navbar Component", () => {
     // The mock changes alt to "test"
     const logo = screen.getByAltText("test");
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute("src", "/logo.svg");
+    expect(logo).toHaveAttribute("src", "/logo/logo.svg");
     expect(logo).toHaveAttribute("width", "135");
     expect(logo).toHaveAttribute("height", "40");
   });
