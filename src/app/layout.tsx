@@ -1,7 +1,7 @@
+import Navbar from "@/components/Navbar/Navbar";
 import type { Metadata } from "next";
 import { Poppins, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} ${grotesk.variable} antialiased`}>
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main className="pt-25">{children}</main>
       </body>
     </html>
   );

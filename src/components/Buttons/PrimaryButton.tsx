@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "md",
   radius = "md",
   width,
-  height,
+  height = "55px",
   className = "",
   ...props
 }) => {

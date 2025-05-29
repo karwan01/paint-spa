@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
 import OutlinedButton from "@/components/Buttons/OutlinedButton";
 import PrimaryButton from "@/components/Buttons/PrimaryButton";
 import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,15 +17,15 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="bg-background/80 border-surface/20 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-md">
+    <nav className="bg-background/80 border-surface/20 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-md lg:py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo.svg"
-                alt="PaintSPA Logo"
+                src="/logo/logo.svg"
+                alt="Paint Logo"
                 width={135}
                 height={40}
                 priority

@@ -38,3 +38,56 @@ jest.mock("next/link", () => ({
     );
   },
 }));
+
+// Mock Button Components
+jest.mock("@/components/Buttons/PrimaryButton", () => {
+  return function MockPrimaryButton({
+    children,
+    onClick,
+    variant,
+    size,
+    radius,
+    className,
+    ...props
+  }) {
+    return (
+      <button
+        onClick={onClick}
+        data-testid="primary-button"
+        data-variant={variant}
+        data-size={size}
+        data-radius={radius}
+        className={className}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  };
+});
+
+jest.mock("@/components/Buttons/OutlinedButton", () => {
+  return function MockOutlinedButton({
+    children,
+    onClick,
+    variant,
+    size,
+    radius,
+    className,
+    ...props
+  }) {
+    return (
+      <button
+        onClick={onClick}
+        data-testid="outlined-button"
+        data-variant={variant}
+        data-size={size}
+        data-radius={radius}
+        className={className}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  };
+});

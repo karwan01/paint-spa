@@ -17,7 +17,7 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({
   size = "md",
   radius = "md",
   width,
-  height,
+  height = "55px",
   className = "",
   ...props
 }) => {
@@ -30,7 +30,7 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({
     secondary:
       "border-secondary text-secondary hover:bg-secondary hover:text-on-secondary focus:ring-secondary/50",
     surface:
-      "border-surface text-on-surface hover:bg-surface hover:text-on-surface focus:ring-surface/50",
+      "text-on-surface hover:bg-surface hover:text-on-surface focus:ring-surface/50",
     warning:
       "border-warning text-warning hover:bg-warning hover:text-white focus:ring-warning/50",
   };
