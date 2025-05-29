@@ -1,0 +1,39 @@
+# Prettier ignore patterns
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Production builds
+/.next/
+/out/
+/build
+/dist
+
+# Environment files
+.env*
+
+# Package managers
+package-lock.json
+yarn.lock
+bun.lockb
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+*.log
+
+# Coverage and test reports
+/coverage
+
+# Ignore auto-generated files
+next-env.d.ts
+*.tsbuildinfo
+
+# Ignore certain file types that shouldn't be formatted
+*.min.js
+*.min.css

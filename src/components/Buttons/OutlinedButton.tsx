@@ -57,13 +57,7 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({
 
   return (
     <button
-      className={`
-        ${baseClasses}
-        ${variantClasses[variant]}
-        ${sizeClasses[size]}
-        ${radiusClasses[radius]}
-        ${className}
-      `.trim()}
+      className={` ${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${radiusClasses[radius]} ${className} `.trim()}
       style={customStyles}
       {...props}
     >

@@ -17,9 +17,9 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-surface/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="bg-background/80 border-surface/20 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
@@ -41,11 +41,11 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="relative text-on-background hover:text-primary transition-colors duration-200 font-primary font-medium flex items-center"
+                  className="text-on-background hover:text-primary font-primary relative flex items-center font-medium transition-colors duration-200"
                 >
                   {link.name}
                   {link.badge && (
-                    <span className="ml-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full min-w-[20px] h-5">
+                    <span className="bg-primary ml-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold text-white">
                       {link.badge}
                     </span>
                   )}
@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden items-center space-x-4 md:flex">
             <OutlinedButton variant="surface" radius="full" height="48px">
               Contact us
             </OutlinedButton>
@@ -68,14 +68,14 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-on-background hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors duration-200"
+              className="text-on-background hover:text-primary focus:ring-primary/50 rounded-md p-2 transition-colors duration-200 focus:ring-2 focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+              <div className="flex h-6 w-6 flex-col justify-center space-y-1">
                 <span
                   className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
-                    isMenuOpen ? "rotate-45 translate-y-1" : ""
+                    isMenuOpen ? "translate-y-1 rotate-45" : ""
                   }`}
                 />
                 <span
@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
                 />
                 <span
                   className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
-                    isMenuOpen ? "-rotate-45 -translate-y-1" : ""
+                    isMenuOpen ? "-translate-y-1 -rotate-45" : ""
                   }`}
                 />
               </div>
@@ -95,27 +95,27 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="px-2 pt-2 pb-6 space-y-1 bg-background/95 backdrop-blur-sm rounded-b-lg border-t border-surface/20">
+          <div className="bg-background/95 border-surface/20 space-y-1 rounded-b-lg border-t px-2 pt-2 pb-6 backdrop-blur-sm">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="flex items-center justify-between px-3 py-3 text-on-background hover:text-primary hover:bg-surface/50 rounded-md transition-all duration-200 font-primary font-medium"
+                className="text-on-background hover:text-primary hover:bg-surface/50 font-primary flex items-center justify-between rounded-md px-3 py-3 font-medium transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>{link.name}</span>
                 {link.badge && (
-                  <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full min-w-[20px] h-5">
+                  <span className="bg-primary inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold text-white">
                     {link.badge}
                   </span>
                 )}
               </Link>
             ))}
-            <div className="pt-4 px-3 space-y-3">
+            <div className="space-y-3 px-3 pt-4">
               <OutlinedButton
                 variant="primary"
                 size="md"
