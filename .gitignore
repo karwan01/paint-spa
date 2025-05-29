@@ -40,4 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Ignore package-lock, yarn and bun
 package-lock.json
+bun.lockb
+yarn.lock
