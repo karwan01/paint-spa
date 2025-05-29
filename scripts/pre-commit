@@ -1,0 +1,50 @@
+#!/bin/sh
+# Pre-commit hook for code quality
+# 
+# To install this hook, run:
+# cp scripts/pre-commit .git/hooks/pre-commit
+# chmod +x .git/hooks/pre-commit
+
+echo "🔍 Running pre-commit checks..."
+
+# Check if npm is available
+if ! command -v npm &> /dev/null; then
+    echo "❌ npm is not installed"
+    exit 1
+fi
+
+# Run type checking
+echo "📝 Type checking..."
+npm run typecheck
+if [ $? -ne 0 ]; then
+    echo "❌ TypeScript type checking failed"
+    exit 1
+fi
+
+# Run linting
+echo "🔍 Linting..."
+npm run lint
+if [ $? -ne 0 ]; then
+    echo "❌ ESLint failed"
+    exit 1
+fi
+
+# Check Prettier formatting
+echo "💅 Checking formatting..."
+npm run prettier:check
+if [ $? -ne 0 ]; then
+    echo "❌ Prettier formatting check failed"
+    echo "💡 Run 'npm run prettier' to fix formatting issues"
+    exit 1
+fi
+
+# Run tests
+echo "🧪 Running tests..."
+npm run test
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed"
+    exit 1
+fi
+
+echo "✅ All pre-commit checks passed!"
+exit 0
