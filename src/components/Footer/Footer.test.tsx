@@ -1,15 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Footer from "./Footer";
 
-// Mock Next.js Image component
-jest.mock("next/image", () => ({
-  __esModule: true,
-  default: ({ src, alt, ...props }: { src: string; alt: string; width?: number; height?: number; className?: string }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} {...props} />
-  ),
-}));
-
 // Mock react-icons
 jest.mock("react-icons/fa", () => ({
   FaFacebook: () => <div data-testid="facebook-icon">Facebook Icon</div>,
