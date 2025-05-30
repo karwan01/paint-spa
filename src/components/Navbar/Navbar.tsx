@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="bg-background/80 border-surface/20 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-md lg:py-8">
+    <nav className="bg-on-background/80 fixed top-0 right-0 left-0 z-50 backdrop-blur-md lg:py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-on-background hover:text-primary font-primary relative flex items-center font-medium transition-colors duration-200"
+                  className="text-background hover:text-primary font-primary relative flex items-center font-medium transition-colors duration-200"
                 >
                   {link.name}
                   {link.badge && (
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-on-background hover:text-primary focus:ring-primary/50 rounded-md p-2 transition-colors duration-200 focus:ring-2 focus:outline-none"
+              className="text-background hover:text-primary focus:ring-primary/50 rounded-md p-2 transition-colors duration-200 focus:ring-2 focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -96,15 +96,15 @@ const Navbar: React.FC = () => {
         {/* Mobile Navigation */}
         <div
           className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            isMenuOpen ? "min-h-screen opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-background/95 border-surface/20 space-y-1 rounded-b-lg border-t px-2 pt-2 pb-6 backdrop-blur-sm">
+          <div className="bg-on-background/95 border-surface/20 space-y-1 rounded-b-lg border-t px-2 pt-2 pb-6 backdrop-blur-sm">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-on-background hover:text-primary hover:bg-surface/50 font-primary flex items-center justify-between rounded-md px-3 py-3 font-medium transition-all duration-200"
+                className="text-background hover:text-primary hover:bg-surface/50 font-primary flex items-center justify-between rounded-md px-3 py-3 font-medium transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>{link.name}</span>
