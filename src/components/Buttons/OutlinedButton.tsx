@@ -22,17 +22,16 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "font-primary font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-2 bg-transparent flex items-center justify-center";
+    "cursor-pointer font-primary font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-2 bg-transparent flex items-center justify-center";
 
   const variantClasses = {
     primary:
       "border-primary text-primary hover:bg-primary hover:text-on-primary focus:ring-primary/50",
     secondary:
       "border-secondary text-secondary hover:bg-secondary hover:text-on-secondary focus:ring-secondary/50",
-    surface:
-      "text-surface hover:bg-surface hover:text-surface focus:ring-surface/50",
+    surface: "text-surface hover:text-surface focus:ring-surface/50",
     warning:
-      "border-warning text-warning hover:bg-warning hover:text-white focus:ring-warning/50",
+      "border-warning text-warning hover:bg-warning hover:text-background focus:ring-warning/50",
   };
 
   const sizeClasses = {

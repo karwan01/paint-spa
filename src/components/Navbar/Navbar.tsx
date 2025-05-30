@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                 >
                   {link.name}
                   {link.badge && (
-                    <span className="bg-primary ml-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold text-white">
+                    <span className="bg-primary text-background ml-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold">
                       {link.badge}
                     </span>
                   )}
@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
               >
                 <span>{link.name}</span>
                 {link.badge && (
-                  <span className="bg-primary inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold text-white">
+                  <span className="bg-primary text-background inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-2 py-1 text-xs leading-none font-bold">
                     {link.badge}
                   </span>
                 )}

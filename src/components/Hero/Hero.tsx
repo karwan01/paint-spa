@@ -31,21 +31,11 @@ const Hero: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="mb-12 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <PrimaryButton
-                variant="primary"
-                size="lg"
-                radius="full"
-                className="px-8 py-4 font-semibold"
-              >
+              <PrimaryButton variant="primary" size="lg" radius="full">
                 Join us
               </PrimaryButton>
 
-              <OutlinedButton
-                variant="surface"
-                size="lg"
-                radius="full"
-                className="px-8 py-4 font-semibold"
-              >
+              <OutlinedButton variant="surface" size="lg" radius="full">
                 Contact us
               </OutlinedButton>
             </div>

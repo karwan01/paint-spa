@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "font-primary font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center";
+    "cursor-pointer font-primary font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center";
 
   const variantClasses = {
     primary:
@@ -29,9 +29,9 @@ const Button: React.FC<ButtonProps> = ({
     secondary:
       "bg-secondary text-on-secondary hover:bg-secondary/90 focus:ring-secondary/50 shadow-sm hover:shadow-md",
     accent:
-      "bg-accent text-white hover:bg-accent/90 focus:ring-accent/50 shadow-sm hover:shadow-md",
+      "bg-accent text-background hover:bg-accent/90 focus:ring-accent/50 shadow-sm hover:shadow-md",
     warning:
-      "bg-warning text-white hover:bg-warning/90 focus:ring-warning/50 shadow-sm hover:shadow-md",
+      "bg-warning text-background hover:bg-warning/90 focus:ring-warning/50 shadow-sm hover:shadow-md",
   };
 
   const sizeClasses = {

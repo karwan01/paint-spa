@@ -63,7 +63,7 @@ const Partners: React.FC = () => {
       <div className="mx-auto lg:my-10">
         {/* Section Header */}
         <div className="mb-[4px] text-center lg:mb-[54px]">
-          <h2 className="font-display text-[18px] font-bold text-white lg:text-4xl lg:text-[48px]">
+          <h2 className="font-display text-background text-[18px] font-bold lg:text-[48px]">
             Our Partners
           </h2>
         </div>
