@@ -1,7 +1,6 @@
-import React from "react";
-import { render, screen, waitFor, act } from "@testing-library/react";
-import CompanyPhilosophy from "./companyPhilosophy";
 import { STATS } from "@/data/statItems";
+import { act, render, screen, waitFor } from "@testing-library/react";
+import CompanyPhilosophy from "./companyPhilosophy";
 
 // Mock the intersection observer
 const mockIntersectionObserver = jest.fn();
@@ -49,13 +48,15 @@ describe("CompanyPhilosophy", () => {
   it("renders the description text correctly", () => {
     render(<CompanyPhilosophy />);
     expect(
-      screen.getByText(/Elevate your brand with our comprehensive marketing solutions/)
+      screen.getByText(
+        /Elevate your brand with our comprehensive marketing solutions/
+      )
     ).toBeInTheDocument();
   });
 
   it("renders all stat items from STATS data", () => {
     render(<CompanyPhilosophy />);
-    
+
     STATS.forEach((stat) => {
       expect(screen.getByText(stat.label)).toBeInTheDocument();
     });
@@ -63,7 +64,7 @@ describe("CompanyPhilosophy", () => {
 
   it("initializes with zero values for all animated numbers", () => {
     render(<CompanyPhilosophy />);
-    
+
     // Check that all stats start with 0
     const zeroElements = screen.getAllByText("0+");
     expect(zeroElements).toHaveLength(STATS.length);
@@ -71,7 +72,7 @@ describe("CompanyPhilosophy", () => {
 
   it("sets up intersection observer correctly", () => {
     render(<CompanyPhilosophy />);
-    
+
     expect(mockIntersectionObserver).toHaveBeenCalledWith(
       expect.any(Function),
       { threshold: 0.3 }
@@ -129,12 +130,14 @@ describe("CompanyPhilosophy", () => {
     });
 
     // Should not have made additional calls beyond the initial animation
-    expect(mockRequestAnimationFrame.mock.calls.length).toBeGreaterThanOrEqual(firstCallCount);
+    expect(mockRequestAnimationFrame.mock.calls.length).toBeGreaterThanOrEqual(
+      firstCallCount
+    );
   });
 
   it("renders stats with correct structure", () => {
     render(<CompanyPhilosophy />);
-    
+
     STATS.forEach((stat) => {
       // Check label exists
       expect(screen.getByText(stat.label)).toBeInTheDocument();
@@ -147,7 +150,7 @@ describe("CompanyPhilosophy", () => {
 
   it("applies correct CSS classes for responsive design", () => {
     render(<CompanyPhilosophy />);
-    
+
     const section = document.querySelector("section");
     expect(section).toHaveClass(
       "min-h-screen",
@@ -161,11 +164,11 @@ describe("CompanyPhilosophy", () => {
 
   it("has proper semantic structure", () => {
     render(<CompanyPhilosophy />);
-    
+
     // Check for main heading
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
-    
+
     // Check for section element
     const section = document.querySelector("section");
     expect(section).toBeInTheDocument();
@@ -173,7 +176,7 @@ describe("CompanyPhilosophy", () => {
 
   it("renders the philosophy indicator correctly", () => {
     render(<CompanyPhilosophy />);
-    
+
     const philosophyText = screen.getByText("The company's philosophy");
     expect(philosophyText).toBeInTheDocument();
     expect(philosophyText).toHaveClass("text-primary", "text-[14px]");
@@ -195,9 +198,9 @@ describe("CompanyPhilosophy", () => {
 
   it("applies staggered animation delays correctly", () => {
     render(<CompanyPhilosophy />);
-    
+
     STATS.forEach((stat, index) => {
-      const statElement = screen.getByText(stat.label).closest('div');
+      const statElement = screen.getByText(stat.label).closest("div");
       expect(statElement).toHaveStyle(`animation-delay: ${index * 0.2}s`);
     });
   });
@@ -232,7 +235,9 @@ describe("CompanyPhilosophy", () => {
       });
 
       // Component should still render correctly after intersection
-      expect(screen.getByText("We bear the responsibility of developing the sector.")).toBeInTheDocument();
+      expect(
+        screen.getByText("We bear the responsibility of developing the sector.")
+      ).toBeInTheDocument();
     });
   });
 
@@ -241,7 +246,7 @@ describe("CompanyPhilosophy", () => {
       // Test the easing function directly if it's exported
       // For now, we test the component behavior which uses it
       render(<CompanyPhilosophy />);
-      
+
       // The easing function should be applied during animation
       // This is more of an integration test since the function is internal
       expect(true).toBe(true); // Placeholder - would need more specific animation testing
