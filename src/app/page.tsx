@@ -1,17 +1,23 @@
+import AboutUs from "@/components/AboutUs/AboutUs";
+import CompanyPhilosophy from "@/components/CompanyPhilosophy/CompanyPhilosophy";
+import CompanyServices from "@/components/CompanyServices/CompanyServices";
+import Footer from "@/components/Footer/Footer";
 import Hero from "@/components/Hero/Hero";
+import Navbar from "@/components/Navbar/Navbar";
 import Partners from "@/components/Partners/Partners";
-import AboutUs from "@/components/aboutUs/AboutUs";
-import CompanyPhilosophy from "@/components/companyPhilosophy/companyPhilosophy";
-import CompanyServices from "@/components/companyServices/CompanyServices";
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Partners />
-      <AboutUs />
-      <CompanyServices />
-      <CompanyPhilosophy />
+      <Navbar />
+      <main className="pt-18 lg:pt-25">
+        <Hero />
+        <Partners />
+        <AboutUs />
+        <CompanyServices />
+        <CompanyPhilosophy />
+      </main>
+      <Footer />
     </>
   );
 }
