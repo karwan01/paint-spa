@@ -119,7 +119,7 @@ const CompanyPhilosophy: React.FC = () => {
     >
       {/*  */}
       <div className="mb-[20px] flex items-center gap-2 border-b border-[#D9DEDD] pb-4 lg:mb-[56px]">
-        <div className="h-2 w-2 rounded-full bg-white"></div>
+        <div className="bg-background h-2 w-2 rounded-full"></div>
         <p className="text-primary text-[14px]">
           The company&apos;s philosophy
         </p>

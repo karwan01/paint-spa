@@ -14,9 +14,9 @@ const SocialButton: React.FC<SocialButtonProps> = ({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex h-8 w-full items-center gap-3 rounded-full bg-white/20 px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/30 lg:h-14 lg:w-auto lg:px-6 lg:py-3 lg:text-base"
+      className="bg-background/20 text-background hover:bg-background/30 flex h-8 w-full items-center gap-3 rounded-full px-4 py-1 text-sm font-medium transition-colors duration-200 lg:h-14 lg:w-auto lg:px-6 lg:py-3 lg:text-base"
     >
-      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm lg:h-8 lg:w-8 lg:text-lg">
+      <div className="bg-background flex h-6 w-6 items-center justify-center rounded-full text-sm lg:h-8 lg:w-8 lg:text-lg">
         {icon}
       </div>
       {children}

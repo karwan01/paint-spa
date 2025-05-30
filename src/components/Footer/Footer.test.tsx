@@ -207,8 +207,8 @@ describe("Footer", () => {
       "flex",
       "items-center",
       "gap-3",
-      "bg-white/20",
-      "hover:bg-white/30",
+      "bg-background/20",
+      "hover:bg-background/30",
       "rounded-full"
     );
   });
