@@ -29,9 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${grotesk.variable} antialiased`}>
+      <body
+        className={`${poppins.variable} ${grotesk.variable} bg-on-background antialiased`}
+      >
         <Navbar />
-        <main className="pt-25">{children}</main>
+        <main className="pt-18 lg:pt-25">{children}</main>
       </body>
     </html>
   );

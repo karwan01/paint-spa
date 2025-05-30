@@ -6,17 +6,19 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="bg-background relative flex min-h-screen items-center overflow-hidden">
-      <div className="flex gap-x-[185px]">
+    <section className="relative flex min-h-screen items-center overflow-hidden">
+      <div className="mx-auto lg:flex lg:gap-x-[185px]">
         {/* Left Content */}
         <div className="relative px-4 text-center lg:order-1 lg:flex lg:flex-col lg:gap-y-[132px] lg:ps-[88px] lg:text-left">
           <div>
             <h1 className="font-primary text-on-primary mb-6 text-[32px] leading-tight font-bold lg:text-[50px]">
               Transform your business{" "}
-              <p>
-                with our <span className="text-gradient"> Creative</span>
-              </p>
-              <span className="text-gradient block">Marketing Solutions!</span>
+              <span className="lg:block">
+                with our <span className="text-gradient"> Creative </span>
+              </span>
+              <span className="text-gradient lg:block">
+                Marketing Solutions!
+              </span>
             </h1>
 
             <p className="font-primary text-on-primary mx-auto mb-8 max-w-2xl text-[16px] leading-relaxed sm:text-xl lg:mx-0">
@@ -62,7 +64,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Right Content - Hero Images - Desktop Only */}
-        <div className="hidden lg:order-2 lg:flex lg:flex-col lg:items-start lg:justify-end lg:gap-y-[28px]">
+        <div className="hidden lg:order-2 lg:flex lg:flex-col lg:items-start lg:justify-between">
           {/* Main Hero Image - Top Right */}
           <Image
             src="/hero/right-hero.svg"

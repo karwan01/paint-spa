@@ -11,9 +11,9 @@ describe("Hero Component", () => {
     it("renders the main heading correctly", () => {
       const heading = screen.getByRole("heading", { level: 1 });
       expect(heading).toBeInTheDocument();
-      // The actual rendered text (note: no space between Creative and Marketing due to HTML structure)
+      // The actual rendered text includes a space between Creative and Marketing
       expect(heading).toHaveTextContent(
-        "Transform your business with our CreativeMarketing Solutions!"
+        "Transform your business with our Creative Marketing Solutions!"
       );
     });
 
@@ -58,10 +58,9 @@ describe("Hero Component", () => {
 
   describe("Images", () => {
     it("renders the main hero image with priority loading", () => {
-      // All images have alt="test" due to global jest mock
-      const images = screen.getAllByAltText("test");
-      const mainHeroImage = images.find(
-        (img) => img.getAttribute("src") === "/hero/right-hero.svg"
+      // Images now preserve their actual alt text
+      const mainHeroImage = screen.getByAltText(
+        "Professional painting service showcase"
       );
       expect(mainHeroImage).toBeInTheDocument();
       expect(mainHeroImage).toHaveAttribute("src", "/hero/right-hero.svg");
@@ -70,18 +69,26 @@ describe("Hero Component", () => {
     });
 
     it("renders the left bottom decorative image", () => {
-      const images = screen.getAllByAltText("test");
-      const leftBottomImage = images.find(
+      const decorativeImages = screen.getAllByAltText(
+        "Decorative design element"
+      );
+      const leftBottomImage = decorativeImages.find(
         (img) => img.getAttribute("src") === "/hero/left-hero-below-texts.svg"
       );
       expect(leftBottomImage).toBeInTheDocument();
+      expect(leftBottomImage).toHaveAttribute(
+        "src",
+        "/hero/left-hero-below-texts.svg"
+      );
       expect(leftBottomImage).toHaveAttribute("width", "488");
       expect(leftBottomImage).toHaveAttribute("height", "356");
     });
 
     it("renders the right bottom decorative image", () => {
-      const images = screen.getAllByAltText("test");
-      const rightBottomImage = images.find(
+      const decorativeImages = screen.getAllByAltText(
+        "Decorative design element"
+      );
+      const rightBottomImage = decorativeImages.find(
         (img) => img.getAttribute("src") === "/hero/right-hero-bottom.svg"
       );
 
@@ -96,7 +103,6 @@ describe("Hero Component", () => {
       const section = document.querySelector("section");
       expect(section).toBeInTheDocument();
       expect(section).toHaveClass(
-        "bg-background",
         "relative",
         "flex",
         "min-h-screen",

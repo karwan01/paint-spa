@@ -7,8 +7,8 @@ describe("Navbar Component", () => {
   it("renders logo with correct attributes", () => {
     render(<Navbar />);
 
-    // The mock changes alt to "test"
-    const logo = screen.getByAltText("test");
+    // The mock now preserves the actual alt text
+    const logo = screen.getByAltText("Paint Logo");
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute("src", "/logo/logo.svg");
     expect(logo).toHaveAttribute("width", "135");
@@ -78,15 +78,25 @@ describe("Navbar Component", () => {
     // Open mobile menu first
     await user.click(mobileMenuButton);
 
-    // Find mobile navigation links (wrapped in spans)
+    // Find mobile navigation links - they are now anchor tags with spans inside
     const homeLinks = screen.getAllByText("Home");
     expect(homeLinks.length).toBe(2);
 
-    // Click on the mobile home link (the one inside a span)
-    const mobileHomeLink = homeLinks.find((link) => link.tagName === "SPAN");
+    // Click on a mobile home link (it's an anchor tag now, not just a span)
+    const mobileHomeLink = homeLinks.find((link) => {
+      const anchor = link.closest("a");
+      return (
+        anchor &&
+        anchor.classList.contains("flex") &&
+        anchor.classList.contains("items-center")
+      );
+    });
 
     if (mobileHomeLink) {
-      await user.click(mobileHomeLink);
+      const mobileHomeAnchor = mobileHomeLink.closest("a");
+      if (mobileHomeAnchor) {
+        await user.click(mobileHomeAnchor);
+      }
     }
 
     // Wait for animation and check if menu closes
@@ -124,7 +134,7 @@ describe("Navbar Component", () => {
   it("logo link navigates to home", () => {
     render(<Navbar />);
 
-    const logoLink = screen.getByAltText("test").closest("a");
+    const logoLink = screen.getByAltText("Paint Logo").closest("a");
     expect(logoLink).toHaveAttribute("href", "/");
   });
 
