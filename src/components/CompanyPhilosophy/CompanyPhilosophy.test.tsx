@@ -1,6 +1,6 @@
 import { STATS } from "@/data/statItems";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import CompanyPhilosophy from "./companyPhilosophy";
+import CompanyPhilosophy from "./CompanyPhilosophy";
 
 // Mock the intersection observer
 const mockIntersectionObserver = jest.fn();
