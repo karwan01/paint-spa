@@ -2,7 +2,7 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "accent" | "warning";
+  variant?: "primary" | "secondary" | "on-surface" | "warning";
   size?: "sm" | "md" | "lg" | "xl";
   radius?: "none" | "sm" | "md" | "lg" | "full";
   width?: string;
@@ -28,8 +28,8 @@ const Button: React.FC<ButtonProps> = ({
       "bg-primary text-on-primary hover:bg-primary/90 focus:ring-primary/50 shadow-sm hover:shadow-md",
     secondary:
       "bg-secondary text-on-secondary hover:bg-secondary/90 focus:ring-secondary/50 shadow-sm hover:shadow-md",
-    accent:
-      "bg-accent text-background hover:bg-accent/90 focus:ring-accent/50 shadow-sm hover:shadow-md",
+    "on-surface":
+      "bg-on-surface text-surface hover:bg-on-surface/90 focus:ring-on-surface/50 shadow-sm hover:shadow-md",
     warning:
       "bg-warning text-background hover:bg-warning/90 focus:ring-warning/50 shadow-sm hover:shadow-md",
   };

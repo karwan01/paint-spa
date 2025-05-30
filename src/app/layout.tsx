@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar/Navbar";
 import type { Metadata } from "next";
 import { Poppins, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -32,8 +31,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${grotesk.variable} bg-on-background antialiased`}
       >
-        <Navbar />
-        <main className="pt-18 lg:pt-25">{children}</main>
+        {children}
       </body>
     </html>
   );
