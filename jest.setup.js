@@ -23,7 +23,7 @@ jest.mock("next/image", () => ({
     );
 
     // eslint-disable-next-line @next/next/no-img-element
-    return <img {...imgProps} alt="test" />;
+    return <img {...imgProps} alt={props.alt || ""} />;
   },
 }));
 
