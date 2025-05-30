@@ -35,3 +35,13 @@
   -webkit-text-fill-color: transparent;
   color: transparent; /* Fallback for older browsers */
 }
+
+/* SCROLLBAR HIDING */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
