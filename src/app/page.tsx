@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import News from "@/components/News/News";
 import Partners from "@/components/Partners/Partners";
 import Pricing from "@/components/Pricing/Pricing";
+import Statistic from "@/components/Statistic/Statistic";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <AboutUs />
         <CompanyServices />
         <CompanyPhilosophy />
+        <Statistic />
         <News />
         <Pricing />
         <ClientFeedBack />
