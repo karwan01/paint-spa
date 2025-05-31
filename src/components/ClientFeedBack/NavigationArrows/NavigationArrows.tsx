@@ -1,4 +1,4 @@
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import ArrowButton from "./ArrowButton/ArrowButton";
 
 interface NavigationArrowsProps {
   currentIndex: number;
@@ -18,45 +18,41 @@ export default function NavigationArrows({
       {/* Navigation Arrows - Mobile */}
       <div className="mx-3 mt-4 md:hidden">
         {currentIndex > 0 && (
-          <button
+          <ArrowButton
+            direction="previous"
             onClick={onPrevious}
-            className="group bg-background float-left flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:scale-110"
-            aria-label="Previous feedback"
-          >
-            <IoChevronBack className="text-on-background h-4 w-4" />
-          </button>
+            variant="mobile"
+            position="left"
+          />
         )}
 
         {currentIndex < maxIndex && (
-          <button
+          <ArrowButton
+            direction="next"
             onClick={onNext}
-            className="group bg-background float-right flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:scale-110"
-            aria-label="Next feedback"
-          >
-            <IoChevronForward className="text-on-background h-4 w-4" />
-          </button>
+            variant="mobile"
+            position="right"
+          />
         )}
       </div>
 
       {/* Navigation Arrows - Desktop */}
       {currentIndex > 0 && (
-        <button
+        <ArrowButton
+          direction="previous"
           onClick={onPrevious}
-          className="group bg-background absolute top-1/3 left-14 z-20 hidden h-[56px] w-[56px] cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:scale-110 md:flex"
-          aria-label="Previous feedback"
-        >
-          <IoChevronBack className="text-on-background h-6 w-6" />
-        </button>
+          variant="desktop"
+          position="left"
+        />
       )}
 
       {currentIndex < maxIndex && (
-        <button
+        <ArrowButton
+          direction="next"
           onClick={onNext}
-          className="group bg-background absolute top-1/3 right-14 z-20 hidden h-[56px] w-[56px] cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:scale-110 md:flex"
-          aria-label="Next feedback"
-        >
-          <IoChevronForward className="text-on-background h-6 w-6" />
-        </button>
+          variant="desktop"
+          position="right"
+        />
       )}
     </>
   );
