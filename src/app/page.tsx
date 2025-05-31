@@ -5,6 +5,7 @@ import CompanyServices from "@/components/CompanyServices/CompanyServices";
 import Footer from "@/components/Footer/Footer";
 import Hero from "@/components/Hero/Hero";
 import Navbar from "@/components/Navbar/Navbar";
+import News from "@/components/News/News";
 import Partners from "@/components/Partners/Partners";
 import Pricing from "@/components/Pricing/Pricing";
 
@@ -18,6 +19,7 @@ export default function Home() {
         <AboutUs />
         <CompanyServices />
         <CompanyPhilosophy />
+        <News />
         <Pricing />
         <ClientFeedBack />
       </main>
