@@ -235,7 +235,12 @@ describe("Statistic Component", () => {
 
     it("applies consistent margin and padding classes", () => {
       const section = document.querySelector("section");
-      expect(section).toHaveClass("mx-3", "my-[60px]", "lg:mx-[90px]", "lg:my-[80px]");
+      expect(section).toHaveClass(
+        "mx-3",
+        "my-[60px]",
+        "lg:mx-[90px]",
+        "lg:my-[80px]"
+      );
 
       const header = document.querySelector(".mb-8.lg\\:mb-12");
       expect(header).toBeInTheDocument();
@@ -247,18 +252,22 @@ describe("Statistic Component", () => {
       // Test that the component renders without errors when chart data is imported
       const section = document.querySelector("section");
       expect(section).toBeInTheDocument();
-      
+
       // Verify that charts are rendered with the mocked data
       expect(screen.getByTestId("bar-chart")).toBeInTheDocument();
       expect(screen.getByTestId("pie-chart")).toBeInTheDocument();
     });
 
     it("renders charts with proper responsive containers", () => {
-      const responsiveContainers = screen.getAllByTestId("responsive-container");
+      const responsiveContainers = screen.getAllByTestId(
+        "responsive-container"
+      );
       expect(responsiveContainers).toHaveLength(2);
-      
+
       // Each container should be within a chart height container
-      const chartContainers = document.querySelectorAll(".h-\\[300px\\].lg\\:h-\\[400px\\]");
+      const chartContainers = document.querySelectorAll(
+        ".h-\\[300px\\].lg\\:h-\\[400px\\]"
+      );
       expect(chartContainers).toHaveLength(2);
     });
   });
