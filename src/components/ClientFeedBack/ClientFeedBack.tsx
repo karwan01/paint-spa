@@ -97,7 +97,7 @@ export default function ClientFeedBack() {
             </div>
 
             {/* Navigation Arrows - Mobile */}
-            <div className="mx-3 mt-8 md:hidden">
+            <div className="mx-3 mt-4 md:hidden">
               {currentIndex > 0 && (
                 <button
                   onClick={goToPrevious}
