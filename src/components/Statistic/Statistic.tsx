@@ -76,7 +76,7 @@ const Statistic: React.FC = () => {
       {/* Charts Grid */}
       <div className="flex flex-col gap-y-6 lg:flex-row lg:gap-y-[48px]">
         {/* Bar Chart - Monthly Performance */}
-        <div className="h-[300px] lg:h-[400px]">
+        <div className="h-[300px] flex-1 lg:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={monthlyData}
@@ -132,7 +132,7 @@ const Statistic: React.FC = () => {
         </div>
 
         {/* Pie Chart - Service Distribution */}
-        <div className="h-[300px] lg:h-[400px]">
+        <div className="h-[300px] flex-1 lg:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
