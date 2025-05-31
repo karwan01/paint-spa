@@ -1,4 +1,5 @@
 import AboutUs from "@/components/AboutUs/AboutUs";
+import ClientFeedBack from "@/components/ClientFeedBack/ClientFeedBack";
 import CompanyPhilosophy from "@/components/CompanyPhilosophy/CompanyPhilosophy";
 import CompanyServices from "@/components/CompanyServices/CompanyServices";
 import Footer from "@/components/Footer/Footer";
@@ -16,6 +17,7 @@ export default function Home() {
         <AboutUs />
         <CompanyServices />
         <CompanyPhilosophy />
+        <ClientFeedBack />
       </main>
       <Footer />
     </>
