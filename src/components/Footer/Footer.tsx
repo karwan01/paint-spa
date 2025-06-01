@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Buttons/PrimaryButton";
+import { helpLinks, navLinks } from "@/constants/footer/footerLinks";
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -13,21 +14,6 @@ const Footer: React.FC = () => {
     e.preventDefault();
     console.log("Email submitted:", email);
   };
-
-  const navLinks = [
-    { label: "The company", href: "#" },
-    { label: "Who are we", href: "#" },
-    { label: "Services", href: "#" },
-    { label: "Jobs", href: "#", badge: "12" },
-    { label: "Branches", href: "#" },
-  ];
-
-  const helpLinks = [
-    { label: "Help center", href: "#" },
-    { label: "Common questions", href: "#" },
-    { label: "Contact us", href: "#" },
-    { label: "Register as merchant", href: "#" },
-  ];
 
   const socialLinks = [
     {
@@ -163,8 +149,6 @@ const Footer: React.FC = () => {
           © 2024 Leader Express Delivery Company. All rights reserved.
         </p>
       </div>
-
-      {/* Background about us for small screens */}
     </footer>
   );
 };
