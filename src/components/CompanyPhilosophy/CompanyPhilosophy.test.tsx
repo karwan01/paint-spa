@@ -1,10 +1,10 @@
 import { STATS } from "@/data/statItems";
-import { useCountUpAnimation } from "@/hooks/animations/countUp/useCountUpAnimation";
+import { useCountUpAnimation } from "@/hooks/countUp/useCountUpAnimation";
 import { render, screen } from "@testing-library/react";
 import CompanyPhilosophy from "./CompanyPhilosophy";
 
 // Mock the useCountUpAnimation hook since we test it separately
-jest.mock("@/hooks/animations/countUp/useCountUpAnimation", () => ({
+jest.mock("@/hooks/countUp/useCountUpAnimation", () => ({
   useCountUpAnimation: jest.fn(() => ({
     sectionRef: { current: null },
     animatedValues: STATS.reduce(

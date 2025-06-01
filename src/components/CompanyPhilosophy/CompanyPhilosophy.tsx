@@ -1,7 +1,7 @@
 "use client";
 
 import { STATS } from "@/data/statItems";
-import { useCountUpAnimation } from "@/hooks/animations/countUp/useCountUpAnimation";
+import { useCountUpAnimation } from "@/hooks/countUp/useCountUpAnimation";
 import { StatItem } from "@/types/StatTypes";
 import React, { useMemo } from "react";
 
