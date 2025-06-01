@@ -155,9 +155,9 @@ src/
 │   ├── pricingTiers.ts    # Pricing plan configurations
 │   └── statItems.ts       # Statistics and metrics
 ├── hooks/                 # Custom React hooks
-│   ├── animations/        # Animation-related hooks
-│   │   └── countUp/       # Count-up animation with intersection observer
 │   ├── carousel/          # Carousel navigation functionality
+│   ├── countUp/           # Count-up animation with intersection observer
+│   ├── marqueeSlider/     # Marquee slider animation for continuous scrolling
 │   └── scroll/            # Smooth scrolling functionality
 ├── types/                 # TypeScript type definitions
 │   ├── chartTypes.ts      # Chart and data visualization types
@@ -168,6 +168,8 @@ src/
 │   ├── PartnerTypes.ts    # Partner data types
 │   ├── PricingTierTypes.ts     # Pricing structure types
 │   └── StatTypes.ts       # Statistics types
+├── utils/                 # Utility functions and helpers
+│   └── stringUtils.ts     # String manipulation utilities
 public/                    # Static assets
 ├── about-us/              # About section graphics
 ├── client-profile/        # Client-related images
