@@ -155,6 +155,8 @@ src/
 │   ├── pricingTiers.ts    # Pricing plan configurations
 │   └── statItems.ts       # Statistics and metrics
 ├── hooks/                 # Custom React hooks
+│   ├── animations/        # Animation-related hooks
+│   │   └── countUp/       # Count-up animation with intersection observer
 │   ├── carousel/          # Carousel navigation functionality
 │   └── scroll/            # Smooth scrolling functionality
 ├── types/                 # TypeScript type definitions
