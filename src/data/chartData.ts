@@ -1,16 +1,4 @@
-// Chart data for statistics visualization
-
-export interface ChartDataItem {
-  name: string;
-  value: number;
-  color?: string;
-}
-
-export interface BarChartDataItem {
-  month: string;
-  projects: number;
-  revenue: number;
-}
+import { BarChartDataItem, ChartDataItem } from "@/types/chartTypes";
 
 // Mock data for bar chart - Monthly projects and revenue
 export const monthlyData: BarChartDataItem[] = [
@@ -35,26 +23,4 @@ export const serviceData: ChartDataItem[] = [
   { name: "Brand Identity", value: 20 },
   { name: "Mobile Apps", value: 15 },
   { name: "Consulting", value: 5 },
-];
-
-// Theme colors for charts
-export const CHART_COLORS = {
-  primary: "#7d4283",
-  secondary: "#646a69",
-  accent: "#e879f9",
-  accentVariant: "#7951b3",
-  warning: "#f3722c",
-  surface: "#ffffff",
-  onSurface: "#161616",
-  background: "#ffffff",
-  onBackground: "#161616",
-} as const;
-
-// Color palette for pie chart segments
-export const PIE_CHART_COLORS = [
-  CHART_COLORS.primary,
-  CHART_COLORS.accent,
-  CHART_COLORS.secondary,
-  CHART_COLORS.accentVariant,
-  CHART_COLORS.warning,
 ];

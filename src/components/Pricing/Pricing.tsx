@@ -4,7 +4,10 @@ import PricingExpansionPanel from "./PricingExpansionPanel/PricingExpansionPanel
 
 const Pricing: React.FC = () => {
   return (
-    <section className="mx-6 my-[50px] flex flex-col gap-y-8 lg:mx-[87px] lg:my-[130px] lg:flex-row lg:justify-between lg:gap-x-[60px]">
+    <section
+      id="pricing"
+      className="mx-6 my-[50px] flex flex-col gap-y-8 lg:mx-[87px] lg:my-[130px] lg:flex-row lg:justify-between lg:gap-x-[60px]"
+    >
       <div className="flex-1 text-center lg:text-start">
         <h2 className="text-background mb-3 text-[24px] leading-[1.2] font-bold lg:text-[65px] lg:leading-[1.1]">
           Simple pricing for your Business

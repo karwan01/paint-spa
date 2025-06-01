@@ -1,4 +1,4 @@
-import { NewsItem } from "@/types/News";
+import { NewsItem } from "@/types/NewsTypes";
 import Image from "next/image";
 
 interface SecondaryNewsCardProps {

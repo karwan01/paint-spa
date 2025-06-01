@@ -7,7 +7,7 @@ import SecondaryNewsCard from "./SecondaryNewsCard/SecondaryNewsCard";
 
 const News: React.FC = () => {
   return (
-    <section className="mx-3 lg:mx-[90px]">
+    <section id="news" className="mx-3 lg:mx-[90px]">
       {/* Title Section */}
       <div className="mb-3 flex justify-center lg:mb-[108px] lg:flex-row lg:items-center lg:justify-between">
         <h2 className="text-background text-[24px] font-bold lg:text-[44px]">

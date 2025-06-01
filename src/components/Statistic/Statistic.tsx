@@ -1,10 +1,6 @@
 "use client";
-import {
-  CHART_COLORS,
-  monthlyData,
-  PIE_CHART_COLORS,
-  serviceData,
-} from "@/data/chartData";
+import { CHART_COLORS, PIE_CHART_COLORS } from "@/constants/chart/chartColors";
+import { monthlyData, serviceData } from "@/data/chartData";
 import React from "react";
 import {
   Bar,

@@ -1,6 +1,6 @@
+import { NewsItem } from "@/types/NewsTypes";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { NewsItem } from "@/types/News";
 import News from "./News";
 
 // Mock the news data

@@ -130,10 +130,51 @@ src/
 │   ├── globals.css         # Global styles with Tailwind
 │   ├── layout.tsx          # Root layout
 │   └── page.tsx           # Home page
-├── components/            # Reusable components
-│   ├── Buttons/           # Button components
-│   └── Navbar/            # Navigation component
-└── ...
+├── components/            # Reusable UI components
+│   ├── AboutUs/           # About us section component
+│   ├── Buttons/           # Reusable button components
+│   ├── ClientFeedBack/    # Client testimonials with carousel
+│   ├── CompanyPhilosophy/ # Company philosophy section
+│   ├── CompanyServices/   # Services showcase component
+│   ├── Footer/            # Site footer with social links
+│   ├── Hero/              # Landing page hero section
+│   ├── Navbar/            # Navigation with smooth scroll
+│   ├── News/              # News and blog section
+│   ├── Partners/          # Partner logos showcase
+│   ├── Pricing/           # Pricing tiers with expansion panels
+│   └── Statistic/         # Statistics display component
+├── constants/             # Application constants
+│   ├── chart/             # Chart-related constants
+│   └── URLs/              # Navigation and URL constants
+├── data/                  # Static data and content
+│   ├── chartData.ts       # Chart configuration data
+│   ├── clientFeedbacks.ts # Customer testimonials
+│   ├── companyServices.ts # Service offerings data
+│   ├── news.ts            # News articles and blog posts
+│   ├── partners.ts        # Partner information
+│   ├── pricingTiers.ts    # Pricing plan configurations
+│   └── statItems.ts       # Statistics and metrics
+├── hooks/                 # Custom React hooks
+│   └── scroll/            # Smooth scrolling functionality
+├── types/                 # TypeScript type definitions
+│   ├── chartTypes.ts      # Chart and data visualization types
+│   ├── ClientFeedBack.ts  # Client feedback interface
+│   ├── CompanyServiceTypes.ts # Service-related types
+│   ├── navTypes.ts        # Navigation types
+│   ├── NewsTypes.ts            # News and article types
+│   ├── PartnerTypes.ts    # Partner data types
+│   ├── PricingTierTypes.ts     # Pricing structure types
+│   └── StatTypes.ts       # Statistics types
+public/                    # Static assets
+├── about-us/              # About section graphics
+├── client-profile/        # Client-related images
+├── footer/                # Footer background assets
+├── hero/                  # Hero section graphics
+├── icons/                 # Service and feature icons
+├── logo/                  # Brand logos and marks
+├── news/                  # News and blog images
+├── partners/              # Partner logos
+└── pricing/               # Pricing section graphics
 ```
 
 ## 🎨 Design System
