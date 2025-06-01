@@ -1,4 +1,4 @@
-import { NewsItem } from "@/types/News";
+import { NewsItem } from "@/types/NewsTypes";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import MainNewsCard from "./MainNewsCard";

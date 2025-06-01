@@ -1,4 +1,4 @@
-import { PricingTier } from "@/types/PricingTier";
+import { PricingTier } from "@/types/PricingTierTypes";
 
 export const pricingTiers: PricingTier[] = [
   {
