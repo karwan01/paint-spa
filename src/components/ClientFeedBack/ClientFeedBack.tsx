@@ -1,68 +1,25 @@
 "use client";
 
 import { clientFeedbacks } from "@/data/clientFeedbacks";
-import { useEffect, useRef, useState } from "react";
+import { useCarousel } from "@/hooks/carousel/useCarousel";
 import ClientFeedbackCard from "./FeedBackCard/FeedBackCard";
 import NavigationArrows from "./NavigationArrows/NavigationArrows";
 
 export default function ClientFeedBack() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [visibleCards, setVisibleCards] = useState(1);
-
-  // Card dimensions
-  const cardWidth = 320;
-  const cardGap = 24;
-
-  // Calculate how many cards can fit based on container width
-  useEffect(() => {
-    const updateVisibleCards = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth;
-
-        // Calculate how many full cards can fit with gaps
-        const availableWidth = width - 32; // Account for container padding
-        const cardsWithGaps = Math.floor(
-          (availableWidth + cardGap) / (cardWidth + cardGap)
-        );
-        const maxCards = Math.max(
-          1,
-          Math.min(cardsWithGaps, clientFeedbacks.length)
-        );
-
-        setVisibleCards(maxCards);
-
-        // Adjust current index if it would show empty space
-        setCurrentIndex((prevIndex) => {
-          const maxIndex = Math.max(0, clientFeedbacks.length - maxCards);
-          return Math.min(prevIndex, maxIndex);
-        });
-      }
-    };
-
-    updateVisibleCards();
-    window.addEventListener("resize", updateVisibleCards);
-    return () => window.removeEventListener("resize", updateVisibleCards);
-  }, []);
-
-  const maxIndex = Math.max(0, clientFeedbacks.length - visibleCards);
-
-  const goToPrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (currentIndex < maxIndex) {
-      setCurrentIndex((prev) => prev + 1);
-    }
-  };
-
-  const goToSlide = (index: number) => {
-    const clampedIndex = Math.min(index, maxIndex);
-    setCurrentIndex(clampedIndex);
-  };
+  const {
+    currentIndex,
+    containerRef,
+    maxIndex,
+    goToPrevious,
+    goToNext,
+    goToSlide,
+    getTransform,
+  } = useCarousel({
+    totalItems: clientFeedbacks.length,
+    cardWidth: 320,
+    cardGap: 24,
+    containerPadding: 32,
+  });
 
   return (
     <>
@@ -85,7 +42,7 @@ export default function ClientFeedBack() {
               <div
                 className="flex gap-6 transition-transform duration-500 ease-in-out"
                 style={{
-                  transform: `translateX(-${currentIndex * (cardWidth + cardGap)}px)`,
+                  transform: getTransform(),
                 }}
               >
                 {clientFeedbacks.map((feedback) => (
