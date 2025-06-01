@@ -1,28 +1,60 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Partners from "./Partners";
 
-// Mock requestAnimationFrame and cancelAnimationFrame
-const mockRequestAnimationFrame = jest.fn();
-const mockCancelAnimationFrame = jest.fn();
+// Mock the useMarqueeSlider hook
+const mockHandleMouseEnter = jest.fn();
+const mockHandleMouseLeave = jest.fn();
+const mockScrollContainerRef = { current: null };
 
-beforeAll(() => {
-  Object.defineProperty(window, "requestAnimationFrame", {
-    value: mockRequestAnimationFrame,
-    writable: true,
-  });
-  Object.defineProperty(window, "cancelAnimationFrame", {
-    value: mockCancelAnimationFrame,
-    writable: true,
-  });
-});
+jest.mock("@/hooks/marqueeSlider/useMarqueeSlider", () => ({
+  useMarqueeSlider: jest.fn(() => ({
+    scrollContainerRef: mockScrollContainerRef,
+    duplicatedItems: [
+      {
+        id: 1,
+        name: "Creative Studios",
+        logo: "/partners/bmw-partner.svg",
+        website: "#",
+      },
+      {
+        id: 2,
+        name: "Design Hub",
+        logo: "/partners/nasa-partner.svg",
+        website: "#",
+      },
+      {
+        id: 3,
+        name: "Art Collective",
+        logo: "/partners/bmw-partner.svg",
+        website: "#",
+      },
+      {
+        id: 1,
+        name: "Creative Studios",
+        logo: "/partners/bmw-partner.svg",
+        website: "#",
+      },
+      {
+        id: 2,
+        name: "Design Hub",
+        logo: "/partners/nasa-partner.svg",
+        website: "#",
+      },
+      {
+        id: 3,
+        name: "Art Collective",
+        logo: "/partners/bmw-partner.svg",
+        website: "#",
+      },
+    ],
+    handleMouseEnter: mockHandleMouseEnter,
+    handleMouseLeave: mockHandleMouseLeave,
+  })),
+}));
 
 beforeEach(() => {
   jest.clearAllMocks();
-  mockRequestAnimationFrame.mockImplementation((callback) => {
-    setTimeout(callback, 16); // Simulate 60fps
-    return 1;
-  });
 });
 
 describe("Partners Component", () => {
@@ -33,26 +65,29 @@ describe("Partners Component", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("renders partner logos in auto-scrolling carousel", () => {
+  it("renders partner logos from hook's duplicated items", () => {
     render(<Partners />);
 
     // Check that partner images are rendered (using alt text since they're images now)
     const partnerImages = screen.getAllByRole("img");
     expect(partnerImages.length).toBeGreaterThan(0);
 
-    // Check specific partner logos by alt text
-    expect(screen.getAllByAltText("Creative Studios")).toHaveLength(2); // Duplicated for infinite scroll
+    // Check specific partner logos by alt text (from mocked duplicated items)
+    expect(screen.getAllByAltText("Creative Studios")).toHaveLength(2);
     expect(screen.getAllByAltText("Design Hub")).toHaveLength(2);
     expect(screen.getAllByAltText("Art Collective")).toHaveLength(2);
   });
 
-  it("has auto-scrolling container with proper styling", () => {
+  it("has proper container structure and styling", () => {
     render(<Partners />);
 
     // Check that the scrollable container exists with overflow hidden
     const scrollContainer = document.querySelector(".overflow-hidden");
     expect(scrollContainer).toBeInTheDocument();
     expect(scrollContainer).toHaveClass("whitespace-nowrap");
+    expect(scrollContainer).toHaveStyle({
+      scrollbarWidth: "none",
+    });
   });
 
   it("partner images have correct styling for carousel", () => {
@@ -90,55 +125,19 @@ describe("Partners Component", () => {
     );
   });
 
-  it("starts auto-scrolling animation on mount", () => {
+  it("integrates correctly with useMarqueeSlider hook", () => {
     render(<Partners />);
 
-    // Verify that requestAnimationFrame is called to start the animation
-    expect(mockRequestAnimationFrame).toHaveBeenCalled();
-  });
-
-  it("pauses animation on mouse enter and resumes on mouse leave", async () => {
-    render(<Partners />);
-
+    // Verify hook handlers are connected to DOM events
     const scrollContainer = document.querySelector(".overflow-hidden");
     expect(scrollContainer).toBeInTheDocument();
 
-    // Clear previous calls
-    jest.clearAllMocks();
-
-    // Mouse enter should pause animation
+    // Mouse enter should call hook handler
     fireEvent.mouseEnter(scrollContainer!);
+    expect(mockHandleMouseEnter).toHaveBeenCalled();
 
-    await waitFor(() => {
-      expect(mockCancelAnimationFrame).toHaveBeenCalled();
-    });
-
-    // Mouse leave should resume animation
+    // Mouse leave should call hook handler
     fireEvent.mouseLeave(scrollContainer!);
-
-    await waitFor(() => {
-      expect(mockRequestAnimationFrame).toHaveBeenCalled();
-    });
-  });
-
-  it("duplicates partners for seamless infinite scroll", () => {
-    render(<Partners />);
-
-    // Each partner should appear twice (original + duplicate)
-    const creativStudiosImages = screen.getAllByAltText("Creative Studios");
-    expect(creativStudiosImages).toHaveLength(2);
-
-    const designHubImages = screen.getAllByAltText("Design Hub");
-    expect(designHubImages).toHaveLength(2);
-  });
-
-  it("carousel container has hidden scrollbars", () => {
-    render(<Partners />);
-
-    const scrollContainer = document.querySelector(".overflow-hidden");
-    expect(scrollContainer).toBeInTheDocument();
-    expect(scrollContainer).toHaveStyle({
-      scrollbarWidth: "none",
-    });
+    expect(mockHandleMouseLeave).toHaveBeenCalled();
   });
 });

@@ -1,4 +1,5 @@
 import { ClientFeedBack } from "@/types/ClientFeedBack";
+import { getInitials } from "@/utils/stringUtils";
 import Image from "next/image";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
 
@@ -11,13 +12,6 @@ export default function ClientFeedbackCard({
   clientFeedBack,
   className = "",
 }: ClientFeedbackCardProps) {
-  const getInitials = (name: string) => {
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("");
-  };
-
   return (
     <div
       className={`bg-on-background relative flex flex-col overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 ease-in-out ${className}`}

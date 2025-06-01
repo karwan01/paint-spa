@@ -1,116 +1,23 @@
 "use client";
 
 import { STATS } from "@/data/statItems";
+import { useCountUpAnimation } from "@/hooks/countUp/useCountUpAnimation";
 import { StatItem } from "@/types/StatTypes";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-
-const ANIMATION_DURATION = 2000;
-const STAGGER_DELAY = 200;
-const INTERSECTION_THRESHOLD = 0.3;
-
-// Easing function moved outside component
-const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
+import React, { useMemo } from "react";
 
 const CompanyPhilosophy: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [animatedNumbers, setAnimatedNumbers] = useState<{
-    [key: number]: number;
-  }>({});
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const animationFramesRef = useRef<number[]>([]);
-
-  // Memoize initial numbers to prevent recreation
-  const initialNumbers = useMemo(() => {
-    const numbers: { [key: number]: number } = {};
-    STATS.forEach((stat) => {
-      numbers[stat.id] = 0;
-    });
-    return numbers;
-  }, []);
-
-  // Initialize animated numbers only once
-  useEffect(() => {
-    setAnimatedNumbers(initialNumbers);
-  }, [initialNumbers]);
-
-  // Memoized intersection observer callback
-  const handleIntersection = useCallback(
-    ([entry]: IntersectionObserverEntry[]) => {
-      if (entry.isIntersecting && !isVisible) {
-        setIsVisible(true);
-      }
-    },
-    [isVisible]
+  // Transform STATS data to match hook's expected format
+  const countUpItems = useMemo(
+    () => STATS.map((stat) => ({ id: stat.id, value: stat.number })),
+    []
   );
 
-  // Intersection Observer with memoized callback
-  useEffect(() => {
-    const current = sectionRef.current;
-    if (!current) return;
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: INTERSECTION_THRESHOLD,
-    });
-
-    observer.observe(current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [handleIntersection]);
-
-  // Optimized animation with cleanup
-  useEffect(() => {
-    if (!isVisible) return;
-
-    // Clear any existing animations
-    animationFramesRef.current.forEach(cancelAnimationFrame);
-    animationFramesRef.current = [];
-
-    STATS.forEach((stat, index) => {
-      const startTime = Date.now() + index * STAGGER_DELAY;
-      const endValue = stat.number;
-
-      const animate = () => {
-        const now = Date.now();
-        const elapsed = now - startTime;
-
-        if (elapsed < 0) {
-          const frameId = requestAnimationFrame(animate);
-          animationFramesRef.current.push(frameId);
-          return;
-        }
-
-        const progress = Math.min(elapsed / ANIMATION_DURATION, 1);
-        const currentValue = Math.floor(endValue * easeOutQuart(progress));
-
-        setAnimatedNumbers((prev) => ({
-          ...prev,
-          [stat.id]: currentValue,
-        }));
-
-        if (progress < 1) {
-          const frameId = requestAnimationFrame(animate);
-          animationFramesRef.current.push(frameId);
-        }
-      };
-
-      const initialFrameId = requestAnimationFrame(animate);
-      animationFramesRef.current.push(initialFrameId);
-    });
-
-    // Cleanup function
-    return () => {
-      animationFramesRef.current.forEach(cancelAnimationFrame);
-      animationFramesRef.current = [];
-    };
-  }, [isVisible]);
+  const { sectionRef, animatedValues } = useCountUpAnimation({
+    items: countUpItems,
+    animationDuration: 2000,
+    staggerDelay: 200,
+    intersectionThreshold: 0.3,
+  });
 
   return (
     <section
@@ -148,7 +55,7 @@ const CompanyPhilosophy: React.FC = () => {
             >
               {/* Animated Number */}
               <p className="text-background text-[27px] md:text-[48px] md:font-bold">
-                {animatedNumbers[stat.id] || 0}
+                {animatedValues[stat.id] || 0}
                 {stat.suffix}
               </p>
 

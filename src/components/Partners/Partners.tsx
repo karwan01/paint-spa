@@ -1,58 +1,20 @@
 "use client";
 import { partners } from "@/data/partners";
+import { useMarqueeSlider } from "@/hooks/marqueeSlider/useMarqueeSlider";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 const Partners: React.FC = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const animationIdRef = useRef<number | null>(null);
-  const scrollAmountRef = useRef<number>(0);
-
-  // Duplicate partners for seamless infinite scroll
-  const duplicatedPartners = [...partners, ...partners];
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const scrollSpeed = 1; // pixels per frame
-    const containerWidth = container.scrollWidth / 2; // Half because we duplicated content
-
-    const scroll = () => {
-      if (!isPaused) {
-        scrollAmountRef.current += scrollSpeed;
-
-        // Reset to beginning when we've scrolled through one full set
-        if (scrollAmountRef.current >= containerWidth) {
-          scrollAmountRef.current = 0;
-        }
-
-        container.scrollLeft = scrollAmountRef.current;
-
-        // Only continue animation if not paused
-        animationIdRef.current = requestAnimationFrame(scroll);
-      } else {
-        // Clear animation ID when paused
-        animationIdRef.current = null;
-      }
-    };
-
-    // Start or resume the animation based on pause state
-    if (!isPaused && !animationIdRef.current) {
-      animationIdRef.current = requestAnimationFrame(scroll);
-    } else if (isPaused && animationIdRef.current) {
-      cancelAnimationFrame(animationIdRef.current);
-      animationIdRef.current = null;
-    }
-
-    return () => {
-      if (animationIdRef.current) {
-        cancelAnimationFrame(animationIdRef.current);
-        animationIdRef.current = null;
-      }
-    };
-  }, [isPaused]); // Include isPaused in dependencies to handle pause/resume
+  const {
+    scrollContainerRef,
+    duplicatedItems: duplicatedPartners,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = useMarqueeSlider(partners, {
+    scrollSpeed: 1,
+    pauseOnHover: true,
+    autoStart: true,
+  });
 
   const handlePartnerClick = (website: string) => {
     window.open(website, "_blank", "noopener,noreferrer");
@@ -77,8 +39,8 @@ const Partners: React.FC = () => {
               scrollbarWidth: "none",
               msOverflowStyle: "none",
             }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="inline-flex gap-x-3">
               {duplicatedPartners.map((partner, index) => (
