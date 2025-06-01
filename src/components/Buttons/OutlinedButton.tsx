@@ -22,7 +22,7 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "cursor-pointer font-primary font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-2 bg-transparent flex items-center justify-center";
+    "cursor-pointer font-display font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-2 bg-transparent flex items-center justify-center";
 
   const variantClasses = {
     primary:

@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${grotesk.variable} bg-on-background antialiased`}
+        className={`${poppins.variable} ${grotesk.variable} bg-on-background font-primary antialiased`}
       >
         {children}
       </body>
