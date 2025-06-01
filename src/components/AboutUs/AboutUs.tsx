@@ -4,7 +4,10 @@ import React from "react";
 
 const AboutUs: React.FC = () => {
   return (
-    <section className="text-background item-center relative flex min-h-screen justify-center overflow-hidden lg:min-h-[626px]">
+    <section
+      id="about"
+      className="text-background item-center relative flex min-h-screen justify-center overflow-hidden lg:min-h-[626px]"
+    >
       {/* Background about us for small screens */}
       <div
         className="absolute h-full w-full bg-contain bg-no-repeat lg:hidden"
