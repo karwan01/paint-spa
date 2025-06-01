@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
         {/* Left Content */}
         <div className="relative px-4 text-center lg:order-1 lg:flex lg:flex-col lg:gap-y-[132px] lg:ps-[88px] lg:text-left">
           <div>
-            <h1 className="font-primary text-on-primary mb-6 text-[32px] leading-tight font-bold lg:text-[50px]">
+            <h1 className="text-on-primary mb-6 text-[32px] leading-tight font-bold lg:text-[50px]">
               Transform your business{" "}
               <span className="lg:block">
                 with our <span className="text-gradient"> Creative </span>
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
               </span>
             </h1>
 
-            <p className="font-primary text-on-primary mx-auto mb-8 max-w-2xl text-[16px] leading-relaxed sm:text-xl lg:mx-0">
+            <p className="text-on-primary mx-auto mb-8 max-w-2xl text-[16px] leading-relaxed sm:text-xl lg:mx-0">
               Welcome to Focus Marketing Solutions! We&apos;re a creative team
               dedicated to driving your business forward with innovative
               marketing strategies. From digital marketing to social media
