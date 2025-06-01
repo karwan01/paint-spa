@@ -12,4 +12,3 @@ export const helpLinks = [
   { label: "Contact us", href: "#" },
   { label: "Register as merchant", href: "#" },
 ];
-
