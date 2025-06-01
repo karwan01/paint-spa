@@ -8,7 +8,7 @@ const CompanyServices: React.FC<CompanyServicesProps> = ({
   services = companyServices,
 }) => {
   return (
-    <section className="py-16 lg:py-24">
+    <section id="services" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 text-center lg:mb-16">
