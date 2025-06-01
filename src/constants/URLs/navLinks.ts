@@ -1,8 +1,4 @@
-export interface NavLink {
-  name: string;
-  href: string;
-  badge?: number;
-}
+import { NavLink } from "@/types/navTypes";
 
 export const navLinks: NavLink[] = [
   { name: "Home", href: "/" },

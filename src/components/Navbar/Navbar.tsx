@@ -1,7 +1,7 @@
 "use client";
 import OutlinedButton from "@/components/Buttons/OutlinedButton";
 import PrimaryButton from "@/components/Buttons/PrimaryButton";
-import { navLinks } from "@/data/navLinks";
+import { navLinks } from "@/constants/URLs/navLinks";
 import { useSmoothScroll } from "@/hooks/scroll/useSmoothScroll";
 import Image from "next/image";
 import Link from "next/link";
