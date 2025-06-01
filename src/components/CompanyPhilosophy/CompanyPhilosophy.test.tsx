@@ -1,36 +1,23 @@
 import { STATS } from "@/data/statItems";
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { useCountUpAnimation } from "@/hooks/animations/countUp/useCountUpAnimation";
+import { render, screen } from "@testing-library/react";
 import CompanyPhilosophy from "./CompanyPhilosophy";
 
-// Mock the intersection observer
-const mockIntersectionObserver = jest.fn();
-mockIntersectionObserver.mockReturnValue({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-});
-
-// Mock requestAnimationFrame and cancelAnimationFrame
-const mockRequestAnimationFrame = jest.fn();
-const mockCancelAnimationFrame = jest.fn();
-
-beforeAll(() => {
-  window.IntersectionObserver = mockIntersectionObserver;
-  window.requestAnimationFrame = mockRequestAnimationFrame;
-  window.cancelAnimationFrame = mockCancelAnimationFrame;
-});
-
-beforeEach(() => {
-  jest.clearAllMocks();
-  mockRequestAnimationFrame.mockImplementation((callback) => {
-    setTimeout(callback, 16); // Simulate 60fps
-    return 1;
-  });
-});
-
-afterEach(() => {
-  jest.useRealTimers();
-});
+// Mock the useCountUpAnimation hook since we test it separately
+jest.mock("@/hooks/animations/countUp/useCountUpAnimation", () => ({
+  useCountUpAnimation: jest.fn(() => ({
+    sectionRef: { current: null },
+    animatedValues: STATS.reduce(
+      (acc, stat) => {
+        acc[stat.id] = 0;
+        return acc;
+      },
+      {} as { [key: number]: number }
+    ),
+    isVisible: false,
+    triggerAnimation: jest.fn(),
+  })),
+}));
 
 describe("CompanyPhilosophy", () => {
   it("renders without crashing", () => {
@@ -68,71 +55,6 @@ describe("CompanyPhilosophy", () => {
     // Check that all stats start with 0
     const zeroElements = screen.getAllByText("0+");
     expect(zeroElements).toHaveLength(STATS.length);
-  });
-
-  it("sets up intersection observer correctly", () => {
-    render(<CompanyPhilosophy />);
-
-    expect(mockIntersectionObserver).toHaveBeenCalledWith(
-      expect.any(Function),
-      { threshold: 0.3 }
-    );
-    expect(mockIntersectionObserver().observe).toHaveBeenCalled();
-  });
-
-  it("triggers animation when element becomes visible", async () => {
-    const mockObserverCallback = jest.fn();
-    mockIntersectionObserver.mockImplementation((callback) => {
-      mockObserverCallback.mockImplementation(callback);
-      return {
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
-      };
-    });
-
-    render(<CompanyPhilosophy />);
-
-    // Simulate intersection observer triggering
-    act(() => {
-      mockObserverCallback([{ isIntersecting: true }]);
-    });
-
-    // Check that requestAnimationFrame was called for each stat
-    await waitFor(() => {
-      expect(mockRequestAnimationFrame).toHaveBeenCalled();
-    });
-  });
-
-  it("does not trigger animation when already visible", () => {
-    const mockObserverCallback = jest.fn();
-    mockIntersectionObserver.mockImplementation((callback) => {
-      mockObserverCallback.mockImplementation(callback);
-      return {
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
-      };
-    });
-
-    render(<CompanyPhilosophy />);
-
-    // First trigger to make it visible
-    act(() => {
-      mockObserverCallback([{ isIntersecting: true }]);
-    });
-
-    const firstCallCount = mockRequestAnimationFrame.mock.calls.length;
-
-    // Second trigger should not start new animations
-    act(() => {
-      mockObserverCallback([{ isIntersecting: true }]);
-    });
-
-    // Should not have made additional calls beyond the initial animation
-    expect(mockRequestAnimationFrame.mock.calls.length).toBeGreaterThanOrEqual(
-      firstCallCount
-    );
   });
 
   it("renders stats with correct structure", () => {
@@ -182,20 +104,6 @@ describe("CompanyPhilosophy", () => {
     expect(philosophyText).toHaveClass("text-primary", "text-[14px]");
   });
 
-  it("cleans up intersection observer on unmount", () => {
-    const mockDisconnect = jest.fn();
-    mockIntersectionObserver.mockReturnValue({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: mockDisconnect,
-    });
-
-    const { unmount } = render(<CompanyPhilosophy />);
-    unmount();
-
-    expect(mockDisconnect).toHaveBeenCalled();
-  });
-
   it("applies staggered animation delays correctly", () => {
     render(<CompanyPhilosophy />);
 
@@ -205,51 +113,15 @@ describe("CompanyPhilosophy", () => {
     });
   });
 
-  it("handles empty STATS array gracefully", () => {
-    // This test would need to be adjusted based on how you want to handle empty stats
-    // For now, we'll just ensure it doesn't crash with the current STATS
-    expect(() => render(<CompanyPhilosophy />)).not.toThrow();
-  });
+  it("uses the useCountUpAnimation hook with correct parameters", () => {
+    render(<CompanyPhilosophy />);
 
-  describe("Animation behavior", () => {
-    it("component manages visibility state correctly", () => {
-      const mockObserverCallback = jest.fn();
-      mockIntersectionObserver.mockImplementation((callback) => {
-        mockObserverCallback.mockImplementation(callback);
-        return {
-          observe: jest.fn(),
-          unobserve: jest.fn(),
-          disconnect: jest.fn(),
-        };
-      });
-
-      render(<CompanyPhilosophy />);
-
-      // Initially, animation should not have started
-      const zeroElements = screen.getAllByText("0+");
-      expect(zeroElements).toHaveLength(STATS.length);
-
-      // Trigger intersection
-      act(() => {
-        mockObserverCallback([{ isIntersecting: true }]);
-      });
-
-      // Component should still render correctly after intersection
-      expect(
-        screen.getByText("We bear the responsibility of developing the sector.")
-      ).toBeInTheDocument();
-    });
-  });
-
-  describe("Easing function", () => {
-    it("easeOutQuart function works correctly", () => {
-      // Test the easing function directly if it's exported
-      // For now, we test the component behavior which uses it
-      render(<CompanyPhilosophy />);
-
-      // The easing function should be applied during animation
-      // This is more of an integration test since the function is internal
-      expect(true).toBe(true); // Placeholder - would need more specific animation testing
+    // Verify the hook was called with the correct transformed data
+    expect(useCountUpAnimation).toHaveBeenCalledWith({
+      items: STATS.map((stat) => ({ id: stat.id, value: stat.number })),
+      animationDuration: 2000,
+      staggerDelay: 200,
+      intersectionThreshold: 0.3,
     });
   });
 });

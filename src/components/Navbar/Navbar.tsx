@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-background hover:text-primary hover:bg-surface/50 font-primary flex items-center justify-between rounded-md px-3 py-3 font-medium transition-all duration-200"
+                className="text-background hover:text-primary font-primary flex items-center justify-between rounded-md px-3 py-3 font-medium transition-all duration-200"
               >
                 <span>{link.name}</span>
                 {link.badge && (
